@@ -1,0 +1,9 @@
+#!/bin/bash
+# Wrapper around 'luarocks install' with support for multiple packages.
+# Does *not* roll back installs in case of failures.
+set -eu
+
+for pkg in "${@}"; do
+  luarocks install "$pkg"
+done
+
