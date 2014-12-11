@@ -5,7 +5,6 @@ MAINTAINER Soumith Chintala <soumith@gmail.com>
 ###############################
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
-RUN apt-get dist-upgrade -y
 RUN apt-get -y dist-upgrade
 RUN apt-get -y install python-software-properties \
                        software-properties-common
