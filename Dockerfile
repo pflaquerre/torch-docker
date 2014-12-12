@@ -31,7 +31,9 @@ RUN apt-get install -y build-essential \
                        npm \
                        libfftw3-dev sox libsox-dev libsox-fmt-all
 RUN git clone https://github.com/xianyi/OpenBLAS.git /tmp/OpenBLAS
-RUN cd /tmp/OpenBLAS && make NO_AFFINITY=1 USE_OPENMP=1 && make install
+WORKDIR /tmp/OpenBLAS
+RUN make NO_AFFINITY=1 USE_OPENMP=1 \
+    && make install
 
 ###########################################
 ### Now install torch
@@ -53,22 +55,22 @@ RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -DWITH
 ADD bin/luarocks_install /usr/bin/luarocks_install
 RUN chmod +x /usr/bin/luarocks_install
 RUN luarocks_install sundown \
-                     cwrap  \
-                     paths  \
-                     torch  \
-                     nn     \
-                     dok    \
-                     gnuplot  \
-                     qtlua  \
-                     qttorch  \
+                     cwrap \
+                     paths \
+                     torch \
+                     nn \
+                     dok \
+                     gnuplot \
+                     qtlua \
+                     qttorch \
                      luafilesystem \
                      penlight \
-                     sys         \
-                     xlua        \
-                     image       \
-                     optim       \
-                     lua-cjson   \
-                     trepl       \
+                     sys \
+                     xlua \
+                     image \
+                     optim \
+                     lua-cjson \
+                     trepl \
                      nnx \
                      threads \
                      graphicsmagick \
