@@ -44,9 +44,6 @@ RUN git clone https://github.com/torch/luajit-rocks.git /tmp/luajit-rocks
 WORKDIR /tmp/luajit-rocks
 RUN mkdir build
 WORKDIR /tmp/luajit-rocks/build
-RUN git checkout master
-RUN git pull
-RUN rm -f CMakeCache.txt
 
 RUN cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release -DWITH_LUAJIT21=ON \
     && make \
